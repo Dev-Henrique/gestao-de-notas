@@ -27,6 +27,17 @@ class _TabelaPageState extends State<TabelaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.turma.nome),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              _viewModel.salvar(widget.turma);
+            },
+            child: Text('Salvar'),
+          ),
+        ],
+      ),
       body: ValueListenableBuilder(
         valueListenable: _viewModel.isLoading,
         builder: (context, isLoading, _) {
@@ -34,36 +45,9 @@ class _TabelaPageState extends State<TabelaPage> {
             Center(child: CircularProgressIndicator());
           }
           return Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      spacing: 8.0,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          icon: Icon(Icons.arrow_back),
-                        ),
-
-                        Text(
-                          _viewModel.nomeDaTurma,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                      ],
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        _viewModel.salvar(widget.turma);
-                      },
-                      child: Text('Salvar'),
-                    ),
-                  ],
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -115,13 +99,13 @@ class _TabelaPageState extends State<TabelaPage> {
                                     ),
                                   ),
                                   actions: [
-                                    ElevatedButton(
+                                    FilledButton(
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
                                       child: Text('Cancelar'),
                                     ),
-                                    ElevatedButton(
+                                    FilledButton(
                                       onPressed: () {
                                         if (_formKeyNomeDaAtividade
                                             .currentState!
@@ -167,13 +151,13 @@ class _TabelaPageState extends State<TabelaPage> {
                                 ),
                               ),
                               actions: [
-                                ElevatedButton(
+                                FilledButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
                                   child: Text('Cancelar'),
                                 ),
-                                ElevatedButton(
+                                FilledButton(
                                   onPressed: () {
                                     if (_formKeyNomeDaAtividade.currentState!
                                         .validate()) {
@@ -263,13 +247,13 @@ class _TabelaPageState extends State<TabelaPage> {
                                   ),
                                 ),
                                 actions: [
-                                  ElevatedButton(
+                                  FilledButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
                                     child: Text('Cancelar'),
                                   ),
-                                  ElevatedButton(
+                                  FilledButton(
                                     onPressed: () {
                                       if (_formKeyNotaDoAluno.currentState!
                                           .validate()) {

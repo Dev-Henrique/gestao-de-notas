@@ -11,7 +11,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Gestão de Notas',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            foregroundColor: WidgetStatePropertyAll(Colors.green),
+          ),
+        ),
 
+        colorScheme: ColorScheme.light(
+          primary: Colors.blueGrey,
+          secondary: Colors.green,
+        ),
+        textTheme: TextTheme(
+          titleLarge: TextStyle(fontWeight: FontWeight.w500),
+        ),
+      ),
       routes: {
         '/': (context) => const HomePage(),
         '/disciplinas': (context) => const CrudDisciplinaPage(),
