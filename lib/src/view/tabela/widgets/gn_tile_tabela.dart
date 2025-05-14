@@ -5,11 +5,13 @@ class GnTileTabela extends StatelessWidget {
   final String media;
   final String nota;
   final String nome;
+  final void Function()? onTap;
   const GnTileTabela({
     super.key,
     required this.media,
     required this.nota,
     required this.nome,
+    this.onTap,
   });
 
   @override
@@ -23,6 +25,7 @@ class GnTileTabela extends StatelessWidget {
       leading: Text(media),
       title: Text(nome),
       trailing: Text(nota),
+      onTap: onTap,
     );
   }
 }

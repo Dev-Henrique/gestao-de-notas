@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gestao_de_notas/src/models/turma_model.dart';
 import 'package:gestao_de_notas/src/view/tabela/tabela_view_model.dart';
 import 'package:gestao_de_notas/src/view/tabela/widgets/gn_tile_tabela.dart';
@@ -15,6 +16,7 @@ class TabelaPage extends StatefulWidget {
 class _TabelaPageState extends State<TabelaPage> {
   final _viewModel = TabelaViewModel();
   final _formKeyNomeDaAtividade = GlobalKey<FormState>();
+  final _formKeyNotaDoAluno = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -175,7 +177,79 @@ class _TabelaPageState extends State<TabelaPage> {
                       String nota =
                           (_viewModel.getNotaDoAluno(index)).toString();
                       String nome = _viewModel.listaDeAlunos[index].name;
-                      return GnTileTabela(media: media, nota: nota, nome: nome);
+                      return GnTileTabela(
+                        media: media,
+                        nota: nota,
+                        nome: nome,
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                content: Form(
+                                  key: _formKeyNotaDoAluno,
+                                  child: TextFormField(
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.allow(
+                                        RegExp(r'^\d*\.?\d*'),
+                                      ),
+                                    ],
+                                    keyboardType:
+                                        TextInputType.numberWithOptions(
+                                          decimal: true,
+                                        ),
+
+                                    decoration: InputDecoration(
+                                      hintText: '0.0',
+                                    ),
+                                    validator: (value) {
+                                      if (value == null) {
+                                        return 'Não pode ser vazio';
+                                      } else {
+                                        if (value.isEmpty) {
+                                          return 'Não pode ser vazio';
+                                        }
+                                        if ((double.tryParse(value) ?? 0) >
+                                            10) {
+                                          return 'Não pode ser maior que 10.0';
+                                        }
+                                      }
+                                      return null;
+                                    },
+                                    onSaved: (newValue) {
+                                      if (newValue != null) {
+                                        _viewModel.alterarNota(
+                                          double.tryParse(newValue) ?? 0.0,
+                                          index,
+                                        );
+                                      }
+                                    },
+                                  ),
+                                ),
+                                actions: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('Cancelar'),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      if (_formKeyNotaDoAluno.currentState!
+                                          .validate()) {
+                                        _formKeyNotaDoAluno.currentState!
+                                            .save();
+                                        Navigator.of(context).pop('');
+                                      }
+                                    },
+                                    child: Text('Confirmar'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                      );
                     },
                   ),
                 ),

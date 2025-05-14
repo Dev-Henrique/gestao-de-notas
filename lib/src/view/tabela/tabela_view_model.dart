@@ -69,7 +69,18 @@ class TabelaViewModel {
   alterarNota(double novaNota, int indexAluno) {
     isLoading.value = true;
     listaDeAlunos[indexAluno].notas[atividadeSelecionada] = novaNota;
+    alterarMedia(indexAluno);
     isLoading.value = false;
+  }
+
+  alterarMedia(int indexAluno) {
+    List<double> notas = listaDeAlunos[indexAluno].notas.values.toList();
+    double media = 0.0;
+    for (double nota in notas) {
+      media += nota;
+    }
+    media = media / notas.length;
+    listaDeAlunos[indexAluno].media = media;
   }
 
   double getNotaDoAluno(int index) {
