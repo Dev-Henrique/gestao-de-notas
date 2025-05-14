@@ -41,6 +41,21 @@ class _CrudTurmaPageState extends State<CrudTurmaPage> {
                     itemCount: turmas.length,
                     itemBuilder:
                         (context, index) => ListTile(
+                          leading: IconButton(
+                            onPressed: () async {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => EditorDeTurmaPage(
+                                        viewmodel: CrudTurmaViewModel(),
+                                        turmaParaEditar: turmas[index],
+                                      ),
+                                ),
+                              );
+                            },
+                            icon: Icon(Icons.edit_rounded),
+                          ),
                           title: Text(turmas[index].nome),
                           trailing: IconButton(
                             onPressed: () {

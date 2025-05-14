@@ -194,6 +194,25 @@ class _HomePageState extends State<HomePage> {
                         itemCount: listaDeTurmas.length,
                         itemBuilder:
                             (context, index) => ListTile(
+                              leading: IconButton(
+                                onPressed: () async {
+                                  final result = await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) => EditorDeTurmaPage(
+                                            viewmodel: CrudTurmaViewModel(),
+                                            turmaParaEditar:
+                                                listaDeTurmas[index],
+                                          ),
+                                    ),
+                                  );
+                                  if (result == '') {
+                                    _viewModel.iniciar();
+                                  }
+                                },
+                                icon: Icon(Icons.edit_rounded),
+                              ),
                               title: Text(listaDeTurmas[index].nome),
                               onTap: () {
                                 Navigator.push(

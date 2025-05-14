@@ -1,12 +1,10 @@
 import 'package:gestao_de_notas/src/data/repositories/disciplinas_repository.dart';
 import 'package:gestao_de_notas/src/data/repositories/escolas_repository.dart';
 import 'package:gestao_de_notas/src/data/repositories/turmas_repository.dart';
-import 'package:gestao_de_notas/src/data/services/off_service.dart';
 import 'package:gestao_de_notas/src/data/services/prefs_service.dart';
 import 'package:gestao_de_notas/src/models/turma_model.dart';
 
 class Domain {
-  final serviceOff = OffService();
   final turmaRepository = TurmasRepositoryImpl(service: PrefsService());
   final escolaRepository = EscolasRepositoryImpl(service: PrefsService());
   final disciplinaRepository = DisciplinasRepositoryImpl(
