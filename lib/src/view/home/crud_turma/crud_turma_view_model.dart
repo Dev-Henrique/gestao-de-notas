@@ -91,7 +91,14 @@ class CrudTurmaViewModel {
   void cadastrarAluno(String newValue) {
     List<AlunoModel> lista = [];
     lista.addAll(listaDeAlunos.value);
-    AlunoModel aluno = AlunoModel(name: newValue, notas: {}, media: 0.0);
+    AlunoModel aluno = AlunoModel(
+      name: newValue,
+      bimestre1: {},
+      media: 0.0,
+      bimestre2: {},
+      bimestre3: {},
+      bimestre4: {},
+    );
     lista.add(aluno);
     listaDeAlunos.value.clear();
     listaDeAlunos.value = lista;

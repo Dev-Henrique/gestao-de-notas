@@ -69,6 +69,25 @@ class _TabelaPageState extends State<TabelaPage> {
                   children: [
                     IconButton(
                       onPressed: () {
+                        _viewModel.alterarBimestre('esquerda');
+                      },
+                      icon: Icon(Icons.arrow_back_ios),
+                    ),
+                    Text(_viewModel.bimestreSelecionado),
+                    IconButton(
+                      onPressed: () {
+                        _viewModel.alterarBimestre('direita');
+                      },
+                      icon: Icon(Icons.arrow_forward_ios_rounded),
+                    ),
+                  ],
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
                         _viewModel.alterarAtividade('esquerda');
                       },
                       icon: Icon(Icons.arrow_back_ios),
@@ -178,6 +197,7 @@ class _TabelaPageState extends State<TabelaPage> {
                   media: 'Média',
                   nota: 'Nota',
                   nome: 'Nome do aluno',
+                  notaDaAtividade: 'Nota na atividade',
                 ),
                 Expanded(
                   child: ListView.builder(
@@ -186,12 +206,17 @@ class _TabelaPageState extends State<TabelaPage> {
                       String media =
                           _viewModel.listaDeAlunos[index].media.toString();
                       String nota =
-                          (_viewModel.getNotaDoAluno(index)).toString();
+                          (_viewModel.getNotaBimestral(index)).toString();
+
                       String nome = _viewModel.listaDeAlunos[index].name;
+                      String notaNaAtividade =
+                          (_viewModel.getNotaDoAluno(index)).toString();
+
                       return GnTileTabela(
                         media: media,
                         nota: nota,
                         nome: nome,
+                        notaDaAtividade: notaNaAtividade,
                         onTap: () {
                           showDialog(
                             context: context,
