@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      appBar: AppBar(title: const Text('Gestão de Notas')),
+      appBar: AppBar(title: const Text('Gestão de Notas'), centerTitle: true),
       body: ValueListenableBuilder(
         valueListenable: _viewModel.isLoading,
         builder: (context, isLoading, _) {
@@ -235,13 +235,13 @@ class _HomePageState extends State<HomePage> {
                                           'Deseja remover a turma ${listaDeTurmas[index]}?',
                                         ),
                                         actions: [
-                                          ElevatedButton(
+                                          FilledButton(
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                             },
                                             child: Text('Cancelar'),
                                           ),
-                                          ElevatedButton(
+                                          FilledButton(
                                             onPressed: () {
                                               _viewModel.removerTurma(index);
                                               Navigator.of(context).pop();

@@ -221,7 +221,7 @@ class _EditorDeTurmaPageState extends State<EditorDeTurmaPage> {
                         ),
                       ),
                     ),
-                    ElevatedButton(
+                    FilledButton(
                       onPressed: () {
                         if (_formKeyStudent.currentState!.validate()) {
                           _formKeyStudent.currentState!.save();
@@ -251,13 +251,13 @@ class _EditorDeTurmaPageState extends State<EditorDeTurmaPage> {
                                         'Deseja remover o Aluno ${listaDeAlunos[index]}?',
                                       ),
                                       actions: [
-                                        ElevatedButton(
+                                        FilledButton(
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                           child: Text('Cancelar'),
                                         ),
-                                        ElevatedButton(
+                                        FilledButton(
                                           onPressed: () {
                                             _viewModel.removeAluno(index);
                                             Navigator.of(context).pop();
@@ -282,7 +282,7 @@ class _EditorDeTurmaPageState extends State<EditorDeTurmaPage> {
           );
         },
       ),
-      floatingActionButton: ElevatedButton(
+      floatingActionButton: FilledButton(
         onPressed: () {
           if (_formKeyName.currentState!.validate()) {
             _formKeyName.currentState!.save();

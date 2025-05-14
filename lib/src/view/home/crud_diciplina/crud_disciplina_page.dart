@@ -53,6 +53,14 @@ class _CrudDisciplinaPageState extends State<CrudDisciplinaPage> {
             ValueListenableBuilder(
               valueListenable: _viewModel.listaDeDisciplinas,
               builder: (context, disciplinas, _) {
+                if (disciplinas.isEmpty) {
+                  return Center(
+                    child: Text(
+                      'Nenhuma disciplina cadastrada',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  );
+                }
                 return Expanded(
                   child: ListView.builder(
                     itemCount: disciplinas.length,
@@ -73,7 +81,7 @@ class _CrudDisciplinaPageState extends State<CrudDisciplinaPage> {
           ],
         ),
       ),
-      floatingActionButton: ElevatedButton(
+      floatingActionButton: FilledButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();

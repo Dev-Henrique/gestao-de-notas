@@ -53,6 +53,14 @@ class _CrudEscolaPageState extends State<CrudEscolaPage> {
             ValueListenableBuilder(
               valueListenable: _viewModel.listaDeEscolas,
               builder: (context, escolas, _) {
+                if (escolas.isEmpty) {
+                  return Center(
+                    child: Text(
+                      'Nenhuma escola cadastrada',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  );
+                }
                 return Expanded(
                   child: ListView.builder(
                     itemCount: escolas.length,
@@ -73,7 +81,7 @@ class _CrudEscolaPageState extends State<CrudEscolaPage> {
           ],
         ),
       ),
-      floatingActionButton: ElevatedButton(
+      floatingActionButton: FilledButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
