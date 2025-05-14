@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gestao_de_notas/src/view/home/crud_turma/crud_turma_view_model.dart';
 import 'package:gestao_de_notas/src/view/home/crud_turma/editor_de_turma/editor_de_turma_page.dart';
 import 'package:gestao_de_notas/src/view/home/home_view_model.dart';
+import 'package:gestao_de_notas/src/view/tabela/tabela_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -195,7 +196,15 @@ class _HomePageState extends State<HomePage> {
                             (context, index) => ListTile(
                               title: Text(listaDeTurmas[index].nome),
                               onTap: () {
-                                Navigator.of(context).pushNamed('/tabela');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (context) => TabelaPage(
+                                          turma: listaDeTurmas[index],
+                                        ),
+                                  ),
+                                );
                               },
                               trailing: IconButton(
                                 onPressed: () {
