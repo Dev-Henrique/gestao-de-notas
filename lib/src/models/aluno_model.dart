@@ -3,7 +3,7 @@ import 'dart:convert';
 
 class AlunoModel {
   String name;
-  List<double> notas;
+  Map<String, double> notas;
   double media;
   AlunoModel({required this.name, required this.notas, required this.media});
 
@@ -14,7 +14,7 @@ class AlunoModel {
   factory AlunoModel.fromMap(Map<String, dynamic> map) {
     return AlunoModel(
       name: map['name'] as String,
-      notas: List.from((map['notas'] as List)),
+      notas: Map.from((map['notas'] as Map)),
       media: map['media'] as double,
     );
   }
