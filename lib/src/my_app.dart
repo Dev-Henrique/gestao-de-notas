@@ -3,6 +3,7 @@ import 'package:gestao_de_notas/src/view/home/crud_diciplina/crud_disciplina_pag
 import 'package:gestao_de_notas/src/view/home/crud_escola/crud_escola_page.dart';
 import 'package:gestao_de_notas/src/view/home/crud_turma/crud_turma_page.dart';
 import 'package:gestao_de_notas/src/view/home/home_page.dart';
+import 'package:gestao_de_notas/src/view/tabela/tabela_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
         '/disciplinas': (context) => const CrudDisciplinaPage(),
         '/escolas': (context) => const CrudEscolaPage(),
         '/turmas': (context) => const CrudTurmaPage(),
+        '/tabela': (context) => const TabelaPage(),
       },
     );
   }

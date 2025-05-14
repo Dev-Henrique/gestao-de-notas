@@ -194,7 +194,9 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder:
                             (context, index) => ListTile(
                               title: Text(listaDeTurmas[index].nome),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/tabela');
+                              },
                               trailing: IconButton(
                                 onPressed: () {
                                   showDialog(
