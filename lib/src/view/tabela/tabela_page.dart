@@ -38,18 +38,29 @@ class _TabelaPageState extends State<TabelaPage> {
             child: Column(
               children: [
                 Row(
-                  spacing: 8,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: Icon(Icons.arrow_back),
-                    ),
+                    Row(
+                      spacing: 8.0,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: Icon(Icons.arrow_back),
+                        ),
 
-                    Text(
-                      _viewModel.nomeDaTurma,
-                      style: Theme.of(context).textTheme.titleLarge,
+                        Text(
+                          _viewModel.nomeDaTurma,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        _viewModel.salvar(widget.turma);
+                      },
+                      child: Text('Salvar'),
                     ),
                   ],
                 ),

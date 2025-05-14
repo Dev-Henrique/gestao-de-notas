@@ -99,4 +99,18 @@ class TabelaViewModel {
 
     isLoading.value = false;
   }
+
+  Future<void> salvar(TurmaModel turma) async {
+    List<TurmaModel> turmas = await domain.getTurmas();
+    turmas[turmas.indexWhere(
+          (turmaIndex) =>
+              turma.nome == turmaIndex.nome &&
+              turma.ano == turmaIndex.ano &&
+              turma.disciplina == turmaIndex.disciplina &&
+              turma.escola == turmaIndex.escola,
+        )]
+        .alunos = listaDeAlunos;
+
+    await domain.setTurmas(turmas);
+  }
 }
