@@ -207,7 +207,7 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                     ),
                                   );
-                                  if (result == '') {
+                                  if (result != null) {
                                     _viewModel.iniciar();
                                   }
                                 },
@@ -275,7 +275,7 @@ class _HomePageState extends State<HomePage> {
                       EditorDeTurmaPage(viewmodel: CrudTurmaViewModel()),
             ),
           );
-          if (result == '') {
+          if (result != null) {
             _viewModel.iniciar();
           }
         },
