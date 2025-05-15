@@ -139,8 +139,10 @@ class HomeViewModel {
   }
 
   Future<void> iniciar() async {
+    isLoading.value = true;
     await iniciarDropdowns();
     await atualizarListaDeTurmas();
+    isLoading.value = false;
   }
 
   Future<void> clearAll() async {
