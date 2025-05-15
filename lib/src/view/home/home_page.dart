@@ -214,8 +214,8 @@ class _HomePageState extends State<HomePage> {
                                 icon: Icon(Icons.edit_rounded),
                               ),
                               title: Text(listaDeTurmas[index].nome),
-                              onTap: () {
-                                Navigator.push(
+                              onTap: () async {
+                                final result = await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder:
@@ -224,6 +224,9 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                   ),
                                 );
+                                if (result != null) {
+                                  _viewModel.iniciar();
+                                }
                               },
                               trailing: IconButton(
                                 onPressed: () {
