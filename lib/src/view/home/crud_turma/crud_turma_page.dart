@@ -32,7 +32,7 @@ class _CrudTurmaPageState extends State<CrudTurmaPage> {
                   return Center(
                     child: Text(
                       'Nenhuma turma cadastrada',
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   );
                 }
@@ -41,6 +41,21 @@ class _CrudTurmaPageState extends State<CrudTurmaPage> {
                     itemCount: turmas.length,
                     itemBuilder:
                         (context, index) => ListTile(
+                          leading: IconButton(
+                            onPressed: () async {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => EditorDeTurmaPage(
+                                        viewmodel: CrudTurmaViewModel(),
+                                        turmaParaEditar: turmas[index],
+                                      ),
+                                ),
+                              );
+                            },
+                            icon: Icon(Icons.edit_rounded),
+                          ),
                           title: Text(turmas[index].nome),
                           trailing: IconButton(
                             onPressed: () {
@@ -52,13 +67,13 @@ class _CrudTurmaPageState extends State<CrudTurmaPage> {
                                       'Deseja remover a turma ${turmas[index]}?',
                                     ),
                                     actions: [
-                                      ElevatedButton(
+                                      FilledButton(
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
                                         child: Text('Cancelar'),
                                       ),
-                                      ElevatedButton(
+                                      FilledButton(
                                         onPressed: () {
                                           _viewModel.removeTurma(index);
                                           Navigator.of(context).pop();
@@ -80,7 +95,7 @@ class _CrudTurmaPageState extends State<CrudTurmaPage> {
           ],
         ),
       ),
-      floatingActionButton: ElevatedButton(
+      floatingActionButton: FilledButton(
         onPressed: () {
           Navigator.push(
             context,

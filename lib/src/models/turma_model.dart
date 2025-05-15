@@ -4,12 +4,14 @@ import 'dart:convert';
 import 'package:gestao_de_notas/src/models/aluno_model.dart';
 
 class TurmaModel {
+  String id;
   String nome;
   String escola;
   String ano;
   String disciplina;
   List<AlunoModel> alunos;
   TurmaModel({
+    required this.id,
     required this.nome,
     required this.escola,
     required this.ano,
@@ -19,6 +21,7 @@ class TurmaModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'nome': nome,
       'escola': escola,
       'ano': ano,
@@ -29,6 +32,7 @@ class TurmaModel {
 
   factory TurmaModel.fromMap(Map<String, dynamic> map) {
     return TurmaModel(
+      id: map['id'] as String,
       nome: map['nome'] as String,
       escola: map['escola'] as String,
       ano: map['ano'] as String,

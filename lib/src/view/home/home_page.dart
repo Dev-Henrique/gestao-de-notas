@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gestao_de_notas/src/view/home/crud_turma/crud_turma_view_model.dart';
 import 'package:gestao_de_notas/src/view/home/crud_turma/editor_de_turma/editor_de_turma_page.dart';
 import 'package:gestao_de_notas/src/view/home/home_view_model.dart';
+import 'package:gestao_de_notas/src/view/tabela/tabela_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      appBar: AppBar(title: const Text('Gestão de Notas')),
+      appBar: AppBar(title: const Text('Gestão de Notas'), centerTitle: true),
       body: ValueListenableBuilder(
         valueListenable: _viewModel.isLoading,
         builder: (context, isLoading, _) {
@@ -193,8 +194,37 @@ class _HomePageState extends State<HomePage> {
                         itemCount: listaDeTurmas.length,
                         itemBuilder:
                             (context, index) => ListTile(
+                              leading: IconButton(
+                                onPressed: () async {
+                                  final result = await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) => EditorDeTurmaPage(
+                                            viewmodel: CrudTurmaViewModel(),
+                                            turmaParaEditar:
+                                                listaDeTurmas[index],
+                                          ),
+                                    ),
+                                  );
+                                  if (result != null) {
+                                    _viewModel.iniciar();
+                                  }
+                                },
+                                icon: Icon(Icons.edit_rounded),
+                              ),
                               title: Text(listaDeTurmas[index].nome),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (context) => TabelaPage(
+                                          turma: listaDeTurmas[index],
+                                        ),
+                                  ),
+                                );
+                              },
                               trailing: IconButton(
                                 onPressed: () {
                                   showDialog(
@@ -205,13 +235,13 @@ class _HomePageState extends State<HomePage> {
                                           'Deseja remover a turma ${listaDeTurmas[index]}?',
                                         ),
                                         actions: [
-                                          ElevatedButton(
+                                          FilledButton(
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                             },
                                             child: Text('Cancelar'),
                                           ),
-                                          ElevatedButton(
+                                          FilledButton(
                                             onPressed: () {
                                               _viewModel.removerTurma(index);
                                               Navigator.of(context).pop();
@@ -245,7 +275,7 @@ class _HomePageState extends State<HomePage> {
                       EditorDeTurmaPage(viewmodel: CrudTurmaViewModel()),
             ),
           );
-          if (result == '') {
+          if (result != null) {
             _viewModel.iniciar();
           }
         },
