@@ -66,7 +66,7 @@ class _TabelaPageState extends State<TabelaPage> {
                     ),
                   ],
                 ),
-
+                Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -177,9 +177,11 @@ class _TabelaPageState extends State<TabelaPage> {
                     ),
                   ],
                 ),
+
+                Divider(),
                 GnTileTabela(
-                  media: 'Média',
-                  nota: 'Nota',
+                  media: 'Média Anual',
+                  nota: 'Nota Bimestral',
                   nome: 'Nome do aluno',
                   notaDaAtividade: 'Nota na atividade',
                 ),

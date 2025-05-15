@@ -22,17 +22,24 @@ class GnTileTabela extends StatelessWidget {
       leadingAndTrailingTextStyle: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: Colors.black,
+        color: Colors.green,
       ),
       titleTextStyle: TextStyle(
         color: Colors.black,
         fontWeight: FontWeight.w500,
       ),
+      subtitleTextStyle: TextStyle(color: Colors.blue),
       shape: RoundedRectangleBorder(side: BorderSide(width: 0.5)),
-      leading: Text(media),
+      leading: SizedBox(
+        width: 50,
+        child: Text(media, textAlign: TextAlign.center),
+      ),
       title: Text(nome),
       subtitle: Text(notaDaAtividade),
-      trailing: Text(nota),
+      trailing: SizedBox(
+        width: 75,
+        child: Text(nota, textAlign: TextAlign.center),
+      ),
       onTap: onTap,
     );
   }
