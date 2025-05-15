@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                 ),
                               );
-                              if (result == '') {
+                              if (result != null) {
                                 _viewModel.iniciar();
                               }
                             },
@@ -214,8 +214,8 @@ class _HomePageState extends State<HomePage> {
                                 icon: Icon(Icons.edit_rounded),
                               ),
                               title: Text(listaDeTurmas[index].nome),
-                              onTap: () async {
-                                final result = await Navigator.push(
+                              onTap: () {
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder:
@@ -224,9 +224,6 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                   ),
                                 );
-                                if (result != null) {
-                                  _viewModel.iniciar();
-                                }
                               },
                               trailing: IconButton(
                                 onPressed: () {

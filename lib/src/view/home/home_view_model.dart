@@ -140,6 +140,7 @@ class HomeViewModel {
 
   Future<void> iniciar() async {
     isLoading.value = true;
+    listaDeTurmas.value = await obterListaDeTurmas();
     await iniciarDropdowns();
     await atualizarListaDeTurmas();
     isLoading.value = false;
