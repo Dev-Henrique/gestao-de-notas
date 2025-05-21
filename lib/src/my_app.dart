@@ -15,18 +15,21 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
+          backgroundColor: Color(0xff1b78b1),
+          foregroundColor: Color(0xfff2f9fd),
         ),
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
-            foregroundColor: WidgetStatePropertyAll(Colors.green),
+            foregroundColor: WidgetStatePropertyAll(Color(0xff1b78b1)),
           ),
         ),
 
         colorScheme: ColorScheme.light(
-          primary: Colors.blueGrey,
-          secondary: Colors.green,
+          surface: Color(0xfff2f9fd),
+          onSurface: Color(0xff102b41),
+          primary: Color(0xff1b78b1),
+          onPrimary: Color(0xfff2f9fd),
+          secondary: Color(0xff1b78b1),
         ),
         textTheme: TextTheme(
           titleLarge: TextStyle(fontWeight: FontWeight.w500),

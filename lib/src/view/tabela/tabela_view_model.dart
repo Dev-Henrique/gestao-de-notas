@@ -55,11 +55,13 @@ class TabelaViewModel {
             bimestres[bimestres.indexWhere((bi) => bimestreSelecionado == bi) +
                 1];
       }
-    } else {
+    } else if ('esquerda' == input) {
       if (bimestres.indexWhere((bi) => bimestreSelecionado == bi) > 0) {
         bimestreSelecionado =
             bimestres[bimestres.indexWhere((bi) => bimestreSelecionado == bi) -
                 1];
+      } else {
+        bimestreSelecionado = '';
       }
     }
     await getAtividadesPorBimestre();

@@ -30,8 +30,10 @@ class GnTileTabela extends StatelessWidget {
       ),
       subtitleTextStyle: TextStyle(color: Colors.blue),
       shape: RoundedRectangleBorder(side: BorderSide(width: 0.5)),
-      leading: SizedBox(
+      leading: Container(
+        decoration: BoxDecoration(border: Border(right: BorderSide(width: 1))),
         width: 50,
+        height: 100,
         child: Text(media, textAlign: TextAlign.center),
       ),
       title: Text(nome),

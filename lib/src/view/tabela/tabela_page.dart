@@ -52,14 +52,20 @@ class _TabelaPageState extends State<TabelaPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      onPressed: () {
+                      onPressed: () async {
                         _viewModel.alterarBimestre('esquerda');
                       },
                       icon: Icon(Icons.arrow_back_ios),
                     ),
-                    Text(_viewModel.bimestreSelecionado),
+                    SizedBox(
+                      width: 200,
+                      height: 25,
+                      child: Center(
+                        child: Text(_viewModel.bimestreSelecionado),
+                      ),
+                    ),
                     IconButton(
-                      onPressed: () {
+                      onPressed: () async {
                         _viewModel.alterarBimestre('direita');
                       },
                       icon: Icon(Icons.arrow_forward_ios_rounded),
@@ -177,7 +183,6 @@ class _TabelaPageState extends State<TabelaPage> {
                     ),
                   ],
                 ),
-
                 Divider(),
                 GnTileTabela(
                   media: 'Média Anual',
